@@ -1,0 +1,57 @@
+Original version
+----------------
+
+SequentialFeatureSelector.fit() [3 columns]
+.. SequentialFeatureSelector._get_best_new_feature_score() [3 columns]
+
+.. .. cross_val_score() [1st column]
+.. .. .. cross_validate() [1st column]
+.. .. .. .. _fit_and_score() [1st column]
+.. .. .. .. .. _safe_split() [1st column]
+.. .. .. .. .. .. _safe_indexing() [1st column]
+.. .. .. .. .. .. .. _array_indexing() [1st column]
+.. .. .. .. .. .. _safe_indexing() [y]
+.. .. .. .. .. .. .. _pandas_indexing() [y]
+.. .. .. .. .. _safe_split() [1st column]
+.. .. .. .. .. .. _safe_indexing() [1st column]
+.. .. .. .. .. .. .. _array_indexing() [1st column]
+.. .. .. .. .. .. _safe_indexing() [y]
+.. .. .. .. .. .. .. _pandas_indexing() [y]
+.. .. .. .. .. Pipeline.fit() [1st column]
+.. .. .. .. .. .. Pipeline._fit() [1st column]
+.. .. .. .. .. .. .. Pipeline._fit_transform_one() [1st column]
+.. .. .. .. .. .. .. .. ColumnTransformer.fit_transform() [1st column]
+.. .. .. .. .. .. .. .. .. ColumnTransformer._validate_column_callables() [1st column]
+.. .. .. .. .. .. .. .. .. .. _get_column_indices() [1st column]
+.. .. .. .. .. .. .. .. .. .. .. _safe_indexing() [1st column, crashed b/c X has 1 column and indices=[0, 1, 2]]
+
+.. .. [same for 2nd and 3rd columns]
+
+Proposed version
+----------------
+
+SequentialFeatureSelector.fit() [3 columns]
+.. SequentialFeatureSelector._get_best_new_feature_score() [3 columns]
+
+.. .. cross_val_score() [1st column]
+.. .. .. cross_validate() [1st column]
+.. .. .. .. _fit_and_score() [1st column]
+.. .. .. .. .. _safe_split() [1st column]
+.. .. .. .. .. .. _safe_indexing() [1st column]
+.. .. .. .. .. .. .. _array_indexing() [1st column]
+.. .. .. .. .. .. _safe_indexing() [y]
+.. .. .. .. .. .. .. _pandas_indexing() [y]
+.. .. .. .. .. _safe_split() [1st column]
+.. .. .. .. .. .. _safe_indexing() [1st column]
+.. .. .. .. .. .. .. _array_indexing() [1st column]
+.. .. .. .. .. .. _safe_indexing() [y]
+.. .. .. .. .. .. .. _pandas_indexing() [y]
+.. .. .. .. .. Pipeline.fit() [1st column]
+.. .. .. .. .. .. Pipeline._fit() [1st column]
+.. .. .. .. .. .. .. Pipeline._fit_transform_one() [1st column]
+.. .. .. .. .. .. .. .. ColumnTransformer.fit_transform() [1st column]
+.. .. .. .. .. .. .. .. .. ColumnTransformer._validate_column_callables() [1st column]
+.. .. .. .. .. .. .. .. .. .. _get_column_indices() [1st column]
+.. .. .. .. .. .. .. .. .. .. .. _safe_indexing() [1st column, crashed b/c X has 1 column and indices=[0, 1, 2]]
+
+.. .. [same for 2nd and 3rd columns]

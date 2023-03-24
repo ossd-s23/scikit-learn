@@ -351,9 +351,20 @@ def _safe_indexing(X, indices, *, axis=0):
             "pandas DataFrames"
         )
 
+    print()
+    print("... ... sklearn > utils > __init__.py > _safe_indexing")
+    import inspect
+
+    curframe = inspect.currentframe()
+    calframe = inspect.getouterframes(curframe, 2)
+    print("... ... > Caller", calframe[1][3])
     if hasattr(X, "iloc"):
+        print("... ... > INTO _pandas_indexing", type(X))
+        print("... ... > X", len(X.index), X.to_numpy().tolist())
         return _pandas_indexing(X, indices, indices_dtype, axis=axis)
     elif hasattr(X, "shape"):
+        print("... ... > INTO _array_indexing", type(X))
+        print("... ... > X", X.shape, X.tolist())
         return _array_indexing(X, indices, indices_dtype, axis=axis)
     else:
         return _list_indexing(X, indices, indices_dtype)
@@ -405,6 +416,16 @@ def _get_column_indices(X, key):
     n_columns = X.shape[1]
 
     key_dtype = _determine_key_type(key)
+
+    print()
+    print("... sklearn > utils > __init__.py > _get_column_indices")
+    import inspect
+
+    curframe = inspect.currentframe()
+    calframe = inspect.getouterframes(curframe, 2)
+    print("... > Caller", calframe[1][3])
+    print("... > X", X.shape, X.tolist())
+    print("... > key", key, key_dtype)
 
     if isinstance(key, (list, tuple)) and not key:
         # we get an empty list

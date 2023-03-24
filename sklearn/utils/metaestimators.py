@@ -138,6 +138,18 @@ def _safe_split(estimator, X, y, indices, train_indices=None):
         Indexed targets.
 
     """
+    print()
+    print("... sklearn > utils > metaestimators.py > _safe_split")
+    import inspect
+
+    curframe = inspect.currentframe()
+    calframe = inspect.getouterframes(curframe, 2)
+    print("... > Caller", calframe[1][3])
+    print("... > indices", None if indices is None else indices.tolist())
+    print(
+        "... > train_indices", None if train_indices is None else train_indices.tolist()
+    )
+
     if _safe_tags(estimator, key="pairwise"):
         if not hasattr(X, "shape"):
             raise ValueError(

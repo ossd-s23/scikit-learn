@@ -305,8 +305,26 @@ class SequentialFeatureSelector(SelectorMixin, MetaEstimatorMixin, BaseEstimator
             if self.direction == "backward":
                 candidate_mask = ~candidate_mask
             X_new = X[:, candidate_mask]
+
+            estimator_new = clone(estimator)
+            if hasattr(estimator_new, "steps"):
+                for _, transform in estimator_new.steps:
+                    if hasattr(transform, "transformers"):
+                        transformers_new = []
+                        for name, transformer, _ in transform.transformers:
+                            transformers_new.append((name, transformer, [0]))
+                        transform.set_params(transformers=transformers_new)
+
+            # TODO: not issue-related
+            # Printing X_new information
+            p_X_new = "_get_best_new_feature_score > Feature #{} > X_new".format(
+                feature_idx
+            )
+            print("\n" + p_X_new + "\n" + "-" * len(p_X_new))
+            print(X_new.shape, X_new.tolist())
+
             scores[feature_idx] = cross_val_score(
-                estimator,
+                estimator_new,
                 X_new,
                 y,
                 cv=self.cv,

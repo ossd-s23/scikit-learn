@@ -436,6 +436,23 @@ class ColumnTransformer(TransformerMixin, _BaseComposition):
         """
         all_columns = []
         transformer_to_input_indices = {}
+
+        print()
+        print(
+            "sklearn > compose > _column_transformer.py > ColumnTransformer >"
+            " _validate_column_callables"
+        )
+        import inspect
+
+        curframe = inspect.currentframe()
+        calframe = inspect.getouterframes(curframe, 2)
+        print("> Caller", calframe[1][3])
+        print("> Transformers (list all)")
+        for i, item in enumerate(self.transformers):
+            print("[{}] Name: {}; Columns: {}".format(i, item[0], item[2]))
+            print("    Transformer: {}".format(item[1]))
+        print("> X", X.shape, X.tolist())
+
         for name, _, columns in self.transformers:
             if callable(columns):
                 columns = columns(X)

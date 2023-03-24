@@ -909,6 +909,12 @@ def _fit_transform_one(
     with the fitted transformer. If ``weight`` is not ``None``, the result will
     be multiplied by ``weight``.
     """
+    print()
+    print("." * 20)
+    print("Fitting transformer:")
+    print(transformer)
+    print("with X", X.shape, X.tolist())
+    print("with y", len(y.index), y.to_numpy().tolist())
     with _print_elapsed_time(message_clsname, message):
         if hasattr(transformer, "fit_transform"):
             res = transformer.fit_transform(X, y, **fit_params)

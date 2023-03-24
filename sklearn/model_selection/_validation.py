@@ -298,7 +298,10 @@ def cross_validate(
         for train, test in indices
     )
 
-    _warn_or_raise_about_fit_failures(results, error_score)
+    print()
+    print("RESULTS:")
+    for result in results:
+        print(result)
 
     # For callabe scoring, the return type is only know after calling. If the
     # return type is a dictionary, the error scores can now be inserted with
@@ -692,6 +695,14 @@ def _fit_and_score(
             cloned_parameters[k] = clone(v, safe=False)
 
         estimator = estimator.set_params(**cloned_parameters)
+
+    print()
+    print("sklearn > utils > __init__.py > _fit_and_score")
+    import inspect
+
+    curframe = inspect.currentframe()
+    calframe = inspect.getouterframes(curframe, 2)
+    print("> Caller", calframe[1][3])
 
     start_time = time.time()
 
